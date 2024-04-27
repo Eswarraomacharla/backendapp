@@ -1,12 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-
-const dburl = "mongodb://localhost:27017/smsproject";
-mongoose.connect(dburl).then(() =>{
-    console.log("Connected to DB Successfully");
+require('dotenv').config();
+const dburl = process.env.mongodburl
+mongoose.connect(dburl).then(()=>
+{
+    console.log("connected to mongodbatlas successfully")
 }).catch((e)=>{
-    console.log(e.message);
+    console.log(e.message)
 });
 
 const app = express();
