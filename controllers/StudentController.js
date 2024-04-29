@@ -82,5 +82,31 @@ const deletestudent = async (request, response) =>
     }
 };
 
+const changePassword = async (req, res) => {
+    const { currentPassword, newPassword } = req.body;
+    const studentId = req.user.studentId; 
+  
+    try {
+      const student = await Student.findOne({ studentId });
+  
+      if (!student) {
+        return res.status(404).json({ error: 'Student not found' });
+      }
+  
+      if (student.password !== currentPassword) {
+        return res.status(401).json({ error: 'Incorrect current password' });
+      }
+  
+      student.password = newPassword;
+      await student.save();
+  
+      return res.json({ success: true, message: 'Password changed successfully' });
+    } catch (error) {
+      console.error('Error changing password:', error);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+  };
+  
 
-module.exports = { addstudent, getstudent, deletestudent, updatestudent,login};
+
+module.exports = { addstudent, getstudent, deletestudent, updatestudent,login,changePassword};
