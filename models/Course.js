@@ -1,7 +1,5 @@
-// Import necessary modules
 const mongoose = require('mongoose');
 
-// Define the Course schema
 const courseSchema = new mongoose.Schema({
     department: {
         type: String,
@@ -47,8 +45,6 @@ const courseSchema = new mongoose.Schema({
     }
 });
 
-// Create a model based on the schema
 const Course = mongoose.model('Course', courseSchema);
 
-// Export the model
 module.exports = Course;

@@ -1,4 +1,3 @@
-// models/Admin.js
 
 const mongoose = require('mongoose');
 
